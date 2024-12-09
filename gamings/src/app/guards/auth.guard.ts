@@ -1,29 +1,28 @@
 import { inject } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
   CanActivateFn,
-  Router,
+  ActivatedRouteSnapshot,
   RouterStateSnapshot,
+  Router,
   UrlTree,
 } from '@angular/router';
-import { AuthService } from '../user/user.service';
-import { map, take, of } from 'rxjs';
+import { UserService } from '../user.service';
+import { map, take } from 'rxjs';
 
-export const AuthGuard: CanActivateFn = (
+export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const userService: any = inject(AuthService);
-  const router = inject(Router);
+  const userService = inject(UserService); // Use dependency injection
+  const router = inject(Router); // Use dependency injection
 
   return userService.isLoggedIn$.pipe(
-    // Use observable
-    take(1), //Take only one value
+    take(1),
     map((isLoggedIn) => {
       if (isLoggedIn) {
         return true;
       } else {
-        router.navigate(['/login'], { replaceUrl: true }); //Add replaceUrl so it doesn't add to history stack
+        router.navigate(['/login'], { replaceUrl: true });
         return false;
       }
     })

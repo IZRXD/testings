@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./core/header/header.component";
-import { FooterComponent } from "./core/footer/footer.component";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule], // Add HttpClientModule
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppComponent {
-  
-}
+export class AppModule {}
