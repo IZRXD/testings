@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../user.service';
+import { Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 import { catchError, of } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [], // No imports needed for Reactive Forms in standalone components
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -17,7 +18,7 @@ export class LoginComponent {
   loading: boolean = false;
 
   constructor(
-    private authService: AuthService,
+    private UserService: any, //needs fix
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -34,7 +35,7 @@ export class LoginComponent {
       return;
     }
     this.loading = true;
-    this.authService
+    this.UserSevice
       .login(this.loginForm.value)
       .pipe(
         catchError((err) => {

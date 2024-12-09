@@ -12,7 +12,7 @@ interface LoginResponse {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class UserService {
   private apiUrl = 'http://localhost:3030/users/login'; // **Crucially, replace with your actual backend API URL**
 
   constructor(private http: HttpClient) {}
