@@ -1,13 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes'; 
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule], // Add HttpClientModule
-  providers: [],
-  bootstrap: [AppComponent],
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html', // Re-added templateUrl
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+  ],
 })
-export class AppModule {}
+export class AppComponent {
+  title = 'Gamings';
+}
