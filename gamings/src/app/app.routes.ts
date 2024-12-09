@@ -23,7 +23,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'sell-game',
+    path: 'create',
     component: GameCreateComponent,
     canActivate: [AuthGuard],
   },
