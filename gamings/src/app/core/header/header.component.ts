@@ -11,7 +11,7 @@ import { UserService } from '../../user/user.service';
 })
 export class HeaderComponent {
   get isLoggedIn(): boolean {
-    return this.userService.isLogged;
+    return this.userService.isLoggedIn();
   }
 
   constructor(private userService: UserService, private router: Router) {}
