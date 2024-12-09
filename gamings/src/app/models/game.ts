@@ -2,10 +2,8 @@ export type Game = {
     _ownerId: string;
     title: string;
     imageUrl: string;
-    platform: string;
-    price: string;
-    condition: string;
-    genres: string;
+    creator: string;
+    rating: string;
     description: string;
     _createdOn: number;
     _id: string;

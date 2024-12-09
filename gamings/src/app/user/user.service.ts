@@ -11,15 +11,11 @@ import {
   throwError,
   of,
 } from 'rxjs';
+import { User } from '../models/user';
+
 
 // Define your User interface (match your backend's data structure)
-export interface User {
-  _id: string;
-  email: string;
-  username: string;
-  accessToken: string; // Add accessToken property
-  // ... other user properties
-}
+
 
 interface AuthResponse {
   token: string;

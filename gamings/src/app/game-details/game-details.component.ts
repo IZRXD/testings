@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Game } from '../types/game';
+import { Game } from '../models/game';
 import { ApiService } from '../api.service';
 import { formatDate } from '../utils/date-convertor';
 

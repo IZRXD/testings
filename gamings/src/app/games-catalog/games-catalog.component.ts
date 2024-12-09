@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Game } from '../types/game';
+import { Game } from '../models/game';
 import { ApiService } from '../api.service';
 import { LoaderComponent } from '../shared/loader/loader.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';

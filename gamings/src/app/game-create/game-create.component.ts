@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { Genres } from '../types/genres';
+import { Genres } from '../models/genres';
 
 @Component({
   selector: 'app-game-create',

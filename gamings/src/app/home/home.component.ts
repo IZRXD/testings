@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Game } from '../types/game';
+import { Game } from '../models/game';
 import { LoaderComponent } from '../shared/loader/loader.component';
 import { RouterLink } from '@angular/router';
 
