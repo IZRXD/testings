@@ -8,17 +8,19 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule,CommonModule], // Import necessary modules
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  error: string = '';
+  emailError: string = '';
+  passwordError: string = '';
+  generalError: string = '';
   loading: boolean = false;
 
   constructor(
-    private UserService: any, //needs fix
+    private userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -29,28 +31,34 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.emailError = '';
+    this.passwordError = '';
+    this.generalError = '';
     if (this.loginForm.invalid) {
-      this.error = 'Invalid form! Please fill all fields.';
-      this.loginForm.markAllAsTouched(); //Mark fields as touched to display errors
+      this.loginForm.markAllAsTouched();
+      if (this.loginForm.get('email')?.invalid) {
+        this.emailError = 'Invalid email';
+      }
+      if (this.loginForm.get('password')?.invalid) {
+        this.passwordError = 'Password must be at least 6 characters';
+      }
       return;
     }
     this.loading = true;
-    this.UserSevice
+    this.userService
       .login(this.loginForm.value)
       .pipe(
         catchError((err) => {
-          this.error = err.message;
+          this.generalError = err.message;
+          this.loading = false;
           return of(null);
         })
       )
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.router.navigate(['/home']);
-          }
-          this.loading = false;
-        },
-        error: (err) => (this.loading = false),
+      .subscribe((response) => {
+        if (response) {
+          this.router.navigate(['/home']);
+        }
+        this.loading = false;
       });
   }
 }
