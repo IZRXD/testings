@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment.development'; //http://localhost:3030/jsonstore
 import { Game } from './models/game';
 
 @Injectable({

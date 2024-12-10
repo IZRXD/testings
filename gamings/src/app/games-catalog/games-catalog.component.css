@@ -8,6 +8,9 @@
 .search-bar {
     width: 40%;
 }
+h2{
+    color: black;
+}
 
 .filters {
     display: flex;

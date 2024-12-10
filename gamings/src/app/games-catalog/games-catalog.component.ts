@@ -28,8 +28,17 @@ export class GamesCatalogComponent implements OnInit {
     this.isLoading = true;
     this.error = null;
     this.apiService.getAllGames().subscribe({
-      next: (games) => {
-        this.games = games;
+      next: (response) => {
+        this.games = Object.values(response).map((gameObj: any) => ({
+          _ownerId: gameObj._ownerId,
+          title: gameObj.title,
+          imageUrl: gameObj.imageUrl,
+          rating: gameObj.rating,
+          downloads: gameObj.downloads,
+          creators: gameObj.creators,
+          description: gameObj.description,
+          _id: gameObj._id,
+        }));
         this.isLoading = false;
       },
       error: (err) => {
