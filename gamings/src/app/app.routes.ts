@@ -7,6 +7,7 @@ import { GamesCatalogComponent } from './games-catalog/games-catalog.component';
 import { GameCreateComponent } from './game-create/game-create.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { authGuard } from './guards/auth.guard';
+import { GameEditComponent } from './game-edit/game-edit.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,7 +26,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: GamesCatalogComponent },
       { path: ':gameId/details', component: GameDetailsComponent },
-      { path: ':gameId/edit', component: GameDetailsComponent },
+      { path: ':gameId/edit', component: GameEditComponent },
       { path: ':gameId/delete', component: GameDetailsComponent },
     ],
   },
