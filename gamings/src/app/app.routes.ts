@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { GamesCatalogComponent } from './games-catalog/games-catalog.component';
-// import { GameCreateComponent } from './game-create/game-create.component';
+import { GameCreateComponent } from './game-create/game-create.component';
 // import { GameDetailsComponent } from './game-details/game-details.component';
 import { authGuard } from './guards/auth.guard';
 
@@ -22,11 +22,11 @@ export const routes: Routes = [
       // { path: ':gameId/details', component: GameDetailsComponent },
     ],
   },
-  // {
-  //   path: 'create',
-  //   component: GameCreateComponent,
-  //   canActivate: [authGuard],
-  // },
+  {
+    path: 'create',
+    component: GameCreateComponent,
+    // canActivate: [authGuard],
+  },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];

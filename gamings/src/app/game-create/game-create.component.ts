@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { Genres } from '../models/genres';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-game-create',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './game-create.component.html',
   styleUrl: './game-create.component.css',
 })
