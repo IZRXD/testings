@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Game } from '../models/game';
 import { ApiService } from '../api.service';
+import { routes } from '../app.routes';
+import { RouterLink } from '@angular/router';
 import { LoaderComponent } from '../shared/loader/loader.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-games-catalog',
@@ -16,15 +16,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 export class GamesCatalogComponent implements OnInit {
   games: Game[] = [];
   isLoading: boolean = true;
-  show: string = 'latest';
-  genre: string = 'All';
-  searchControl: FormControl = new FormControl();
+  error: string | null = null;
 
-  constructor(
-    private apiService: ApiService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.fetchGames();
@@ -32,27 +26,16 @@ export class GamesCatalogComponent implements OnInit {
 
   fetchGames(): void {
     this.isLoading = true;
-    this.apiService.getAllGames().subscribe(
-      (games) => {
+    this.error = null;
+    this.apiService.getAllGames().subscribe({
+      next: (games) => {
         this.games = games;
         this.isLoading = false;
       },
-      (error) => {
-        console.error('Error fetching games:', error);
-        this.isLoading = false;
-      }
-    );
+      error: (err) => {
+        this.error = 'Error fetching games. Please try again later.';
+        console.error('Error fetching games:', err);
+      },
+    });
   }
-
-  // updateQueryParams(): void {
-  //   this.router.navigate([], {
-  //     relativeTo: this.route,
-  //     queryParams: {
-  //       show: this.show,
-  //       genre: this.genre,
-  //       search: this.searchControl.value
-  //     },
-  //     queryParamsHandling: 'merge'
-  //   })
-  // }
 }

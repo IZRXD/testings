@@ -21,7 +21,8 @@
       </div>
       <div class="card-footer">
         <p>{{ game.rating }} <i class="fa-solid fa-star"></i></p> 
-        <!-- make it rating -->
+        <p>{{ game.downloads }} <i class="fa-solid fa-star"></i></p> 
+        <!--chnage the download banner -->
         <a [routerLink]="['/catalog', game._id, 'details']">DETAILS</a>
       </div>
     </div>

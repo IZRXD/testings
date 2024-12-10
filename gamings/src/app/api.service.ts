@@ -30,19 +30,17 @@ export class ApiService {
   createGame(
     title: string,
     imageUrl: string,
-    platform: string,
-    price: string,
-    condition: string,
-    genres: string,
+    creator: string,
+    rating: string,
+    downloads: string,
     description: string
   ) {
     const payload = {
       title,
       imageUrl,
-      platform,
-      price,
-      condition,
-      genres,
+      downloads,
+      rating,
+      creator,
       description,
     };
     return this.http.put<Game>(`${this.apiUrl}/games`, payload);
