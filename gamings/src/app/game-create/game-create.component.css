@@ -1,108 +1,93 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600');
-
-* {
-  box-sizing: border-box;
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  background-position: center center;
 }
 
-body {
-  font-family: 'open sans', helvetica, arial, sans;
-  background: url(http://farm8.staticflickr.com/7064/6858179818_5d652f531c_h.jpg) no-repeat center center fixed;
-  background-size: cover;
+.auth-section {
+  width: 350px;
+  background-color: rgba(255, 255, 255, 0.8); /* Increased opacity for better contrast */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.log-form {
-  width: 40%;
-  min-width: 320px;
-  max-width: 475px;
-  background: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+.form {
+  text-align: center;
+}
 
-  @media (max-width: 40em) {
-    width: 95%;
-    position: relative;
-    margin: 2.5% auto 0 auto;
-    left: 0%;
-    transform: translate(0%, 0%);
+h1 {
+  color: #333; /* Darker text color for better contrast */
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 15px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8; /* Slightly darker input background */
+  color: #333;
+  font-size: 16px;
+}
+
+.input-error {
+  border-color: #f00;
+}
+
+label {
+  color: #f00; /* Error message color */
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+.btn {
+  background-color: #007bff; /* Adjusted button color for better contrast */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0062cc;
   }
 
-  form {
-    display: block;
-    width: 100%;
-    padding: 2em;
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.btn-disabled {
+  background-color: #ccc;
+  color: #666;
+}
+
+.helpful-links {
+  font-size: small;
+  margin-top: 20px;
+  text-align: center;
+
+  h4 {
+    margin-bottom: 5px;
+    color: #fff;
   }
 
-  h2 {
-    width: 100%;
-    color: #4f4f4f; /* lighten(@grey, 20%) */
-    font-family: 'open sans condensed';
-    font-size: 1.35em;
-    display: block;
-    background: #2a2a2a; /* @grey */
-    width: 100%;
-    text-transform: uppercase;
-    padding: 0.75em 1em 0.75em 1.5em;
-    box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.05); /* fadeout(white, 95%) */
-    border: 1px solid #252525; /* darken(@grey, 5%) */
-    margin: 0;
-    font-weight: 200;
-  }
-
-  input {
-    display: block;
-    margin: auto auto;
-    width: 100%;
-    margin-bottom: 2em;
-    padding: 0.5em 0;
-    border: none;
-    border-bottom: 1px solid #eaeaea;
-    padding-bottom: 1.25em;
-    color: #757575;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .btn {
-    display: inline-block;
-    background: #1fb5bf; /* @blue */
-    border: 1px solid #1c979c; /* darken(@blue, 5%) */
-    padding: 0.5em 2em;
-    color: white;
-    margin-right: 0.5em;
-    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.8); /* fadeout(white, 80%) */
-
-    &:hover {
-      background: #22c2c7; /* lighten(@blue, 5%) */
-    }
-
-    &:active {
-      background: #1fb5bf; /* @blue */
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1); /* fadeout(black, 90%) */
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .forgot {
-    color: #28c8cf; /* lighten(@blue, 10%) */
-    line-height: 0.5em;
-    position: relative;
-    top: 2.5em;
+  a {
+    color: #007bff; /* Link color to match button */
     text-decoration: none;
-    font-size: 0.75em;
-    margin: 0;
-    padding: 0;
-    float: right;
-
-    &:hover {
-      color: #1c979c; /* darken(@blue, 5%) */
-    }
   }
 }

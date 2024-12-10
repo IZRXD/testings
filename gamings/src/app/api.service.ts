@@ -28,12 +28,12 @@ export class ApiService {
   }
 
   createGame(
-    title: string,
-    imageUrl: string,
-    creators: string,
-    rating: string,
-    downloads: string,
-    description: string
+    title: string | undefined,
+    imageUrl: string | undefined,
+    creators: string | undefined,
+    rating: string | undefined,
+    downloads: string | undefined,
+    description: string | undefined
   ) {
     const payload = {
       title,

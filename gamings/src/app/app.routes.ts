@@ -14,6 +14,11 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'create-game',
+    component: GameCreateComponent,
+    // canActivate: [authGuard],
+  },
 
   {
     path: 'catalog',
@@ -21,11 +26,6 @@ export const routes: Routes = [
       { path: '', component: GamesCatalogComponent },
       // { path: ':gameId/details', component: GameDetailsComponent },
     ],
-  },
-  {
-    path: 'create',
-    component: GameCreateComponent,
-    // canActivate: [authGuard],
   },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },
