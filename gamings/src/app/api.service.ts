@@ -30,7 +30,7 @@ export class ApiService {
   createGame(
     title: string,
     imageUrl: string,
-    creator: string,
+    creators: string,
     rating: string,
     downloads: string,
     description: string
@@ -40,7 +40,7 @@ export class ApiService {
       imageUrl,
       downloads,
       rating,
-      creator,
+      creators,
       description,
     };
     return this.http.put<Game>(`${this.apiUrl}/games`, payload);
