@@ -46,7 +46,7 @@ export class ApiService {
     return this.http.post<Game>(`${this.apiUrl}/games`, payload);
   }
   editGame(id: string, updatedGame: Game) {
-    return this.http.put<Game>(`${this.apiUrl}/games/${id}`, updatedGame);
+    return this.http.post<Game>(`${this.apiUrl}/games/${id}`, updatedGame);
   }
 
   deleteGame(id: string) {

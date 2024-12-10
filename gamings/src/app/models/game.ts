@@ -1,10 +1,10 @@
 export type Game = {
-  _ownerId: string;
-  title: string;
-  imageUrl: string;
-  creators: string;
-  rating: string;
-  downloads: string;
-  description: string;
-  _id: string;
+  _ownerId: string | undefined;
+  title: string | undefined;
+  imageUrl: string | undefined;
+  creators: string | undefined;
+  rating: string | undefined;
+  downloads: string | undefined;
+  description: string | undefined;
+  _id?: string | undefined;
 };

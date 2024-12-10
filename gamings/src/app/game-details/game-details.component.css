@@ -119,7 +119,7 @@ h2 {
     flex-grow: 2;
 }
 
-.btns a {
+.btns  button {
     width: 120px;
     background-color: #2656cf;
     color: white;

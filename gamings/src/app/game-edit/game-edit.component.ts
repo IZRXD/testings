@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
@@ -6,35 +6,47 @@ import { Router } from '@angular/router';
 import { UserService } from '../user/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from '../models/game';
+import { Location } from '@angular/common'; // Import Location service
+import { GameService } from '../game.service';
 @Component({
-  selector: 'app-game-create',
+  selector: 'app-game-edit',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './game-edit.component.html',
   styleUrl: './game-edit.component.css',
 })
-export class GameEditComponent {
-  game = {} as Game;
-
+export class GameEditComponent implements OnInit {
+  game: Game = {} as Game;
+  isEditing: boolean = false; // Flag to track if editing is in progress
   constructor(
     private apiService: ApiService,
-    private router: ActivatedRoute,
-    private userService: UserService
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    private location: Location,
+     private gameService: GameService
   ) {}
 
   ngOnInit(): void {
-    const id = this.router.snapshot.params['gameId'];
+    this.isEditing = true; // Set editing flag
+    const id = this.route.snapshot.params['gameId'];
 
-    this.apiService.getSingleGame(id).subscribe((game) => {
-      this.game = game;
+    this.apiService.getSingleGame(id).subscribe({
+      next: (game) => {
+        this.game = game;
+         this.gameService.setGame(game);
+      },
+      error: (error) => {
+        console.error('Error fetching game:', error);
+        // Handle error (e.g., display error message, redirect)
+      },
     });
   }
-  addGame(event: Event) {
-    event.preventDefault(); // Prevent default form submission
 
+  editGame(event: Event) {
+    event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
-
-    const gameData = {
+    const gameData: Game = {
       _ownerId: this.userService.getCurrentUser().toString(),
       title: formData.get('title')?.toString(),
       imageUrl: formData.get('imageUrl')?.toString(),
@@ -43,23 +55,16 @@ export class GameEditComponent {
       downloads: formData.get('downloads')?.toString(),
       description: formData.get('description')?.toString(),
     };
-    this.apiService
-      .createGame(
-        gameData.title,
-        gameData.imageUrl,
-        gameData.creators,
-        gameData.rating,
-        gameData.downloads,
-        gameData.description
-      )
-      .subscribe({
-        next: (data) => {
-          this.router.navigate(['/catalog']);
-        },
-        error: (err) => {
-          console.error('Error creating game:', err);
-          // Handle errors (e.g., display error message)
-        },
-      });
+    console.log(gameData);
+
+    this.apiService.editGame(this.game._id as string, gameData).subscribe({
+      next: () => {
+        this.location.back();
+      },
+      error: (err) => {
+        console.error('Error editing game:', err);
+        // Handle errors (e.g., display error message)
+      },
+    });
   }
 }

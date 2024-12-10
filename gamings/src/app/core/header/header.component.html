@@ -21,14 +21,8 @@
             <li><a routerLink="/login">Login</a></li>
             <li><a routerLink="/register">Register</a></li>
             } @else{
-            <li><a routerLink="/browse">Browse</a></li>
             <li><a (click)="logout()">Logout</a></li>
-            <li>
-              <a href="profile.html"
-                >Profile
-                <img src="../../../assets/images/profile-header.jpg" alt=""
-              /></a>
-            </li>
+           
             }
           </ul>
           <a class="menu-trigger">
