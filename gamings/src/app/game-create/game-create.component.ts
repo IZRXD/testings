@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-game-create',
@@ -12,13 +13,15 @@ import { Router } from '@angular/router';
   styleUrl: './game-create.component.css',
 })
 export class GameCreateComponent {
-  constructor(private apiService: ApiService , private router: Router) {}
+  constructor(private apiService: ApiService , private router: Router,private userService: UserService) {}
 
   addGame(event: Event) {
     event.preventDefault(); // Prevent default form submission
-
+    
     const formData = new FormData(event.target as HTMLFormElement);
-    const gameData = {
+    
+    const gameData = { 
+      _ownerId: this.userService.getCurrentUser().toString(),
       title: formData.get('title')?.toString(),
       imageUrl: formData.get('imageUrl')?.toString(),
       creators: formData.get('creators')?.toString(),
@@ -26,10 +29,8 @@ export class GameCreateComponent {
       downloads: formData.get('downloads')?.toString(),
       description: formData.get('description')?.toString(),
     };
-    console.log(gameData)
     this.apiService.createGame(gameData.title, gameData.imageUrl, gameData.creators, gameData.rating, gameData.downloads, gameData.description).subscribe({
       next: (data) => {
-        console.log('Game created:', data);
          this.router.navigate(['/catalog']);
       },
       error: (err) => {

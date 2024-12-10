@@ -10,16 +10,11 @@ import { RouterLink } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent  {
   games: Game[] = [];
   isLoading = true;
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {
-    this.apiService.getLastThreeGames().subscribe((games) => {
-      this.games = games;
-      this.isLoading = false;
-    });
-  }
+ 
 }

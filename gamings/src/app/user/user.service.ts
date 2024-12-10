@@ -18,7 +18,7 @@ import { User } from '../models/user';
 
 
 interface AuthResponse {
-  token: string;
+  accessToken: string;
   user: User;
 }
 
@@ -51,7 +51,7 @@ export class UserService {
       .post<AuthResponse>(`${this.apiUrl}login`, credentials)
       .pipe(
         tap((response) => {
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('accessToken', response.accessToken);
           this.userSubject.next(response.user);
         }),
         catchError((error) => {
@@ -65,13 +65,13 @@ export class UserService {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem('accessToken');
     this.userSubject.next(null);
   }
 
   getCurrentUser(): Observable<User | null> {
     if (this.isLoggedIn()) {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('accessToken');
       const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
       return this.http.get<User>(`${this.apiUrl}me`, { headers }).pipe(
         map((user) => user),
@@ -87,6 +87,6 @@ export class UserService {
 
   //Helper function to check if logged in synchronously
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('accessToken');
   }
 }

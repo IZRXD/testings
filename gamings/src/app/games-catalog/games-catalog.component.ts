@@ -29,6 +29,7 @@ export class GamesCatalogComponent implements OnInit {
     this.error = null;
     this.apiService.getAllGames().subscribe({
       next: (response) => {
+        console.log('Games:', response);
         this.games = Object.values(response).map((gameObj: any) => ({
           _ownerId: gameObj._ownerId,
           title: gameObj.title,
@@ -38,7 +39,9 @@ export class GamesCatalogComponent implements OnInit {
           creators: gameObj.creators,
           description: gameObj.description,
           _id: gameObj._id,
-        }));
+        })
+        
+      );
         this.isLoading = false;
       },
       error: (err) => {

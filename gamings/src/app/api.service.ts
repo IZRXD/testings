@@ -17,11 +17,11 @@ export class ApiService {
     return this.http.get<Game[]>(`${this.apiUrl}/games`);
   }
 
-  getLastThreeGames() {
-    return this.http.get<Game[]>(
-      `${this.apiUrl}/games?sortBy=_createdOn%20desc&pageSize=3`
-    );
-  }
+  // getLastThreeGames() {
+  //   return this.http.get<Game[]>(
+  //     `${this.apiUrl}/games?sortBy=_createdOn%20desc&pageSize=3`
+  //   );
+  // }
 
   getSingleGame(id: string) {
     return this.http.get<Game>(`${this.apiUrl}/games/${id}`);
@@ -43,6 +43,6 @@ export class ApiService {
       creators,
       description,
     };
-    return this.http.put<Game>(`${this.apiUrl}/games`, payload);
+    return this.http.post<Game>(`${this.apiUrl}/games`, payload);
   }
 }

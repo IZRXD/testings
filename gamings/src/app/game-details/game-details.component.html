@@ -5,15 +5,16 @@
     <section class="details-section">
         <div class="details-container">
             <div class="details-img">
-                <img src={{game.imageUrl}} alt="{{game.title}}'s cover">
+                <img src={{game.imageUrl}} alt="{{game.title}}">
             </div>
             <div class="details-data">
                 <h2>{{game.title}}</h2>
                 <div class="subhead">
-                    <p class="helpful-data">Creators: <span class="dynamic-data">{{game.creator}}</span></p>
+                    <p class="helpful-data">Creators: <span class="dynamic-data">{{game.creators}}</span></p>
                 </div>
+               
+                <p >Description: </p>
                 <p class="description">{{game.description}}</p>
-                <p class="helpful-data">Listed on: <span class="dynamic-data">{{date}}</span></p>
                 <div class="details-footer">
                     <div class="condition">
                         
@@ -21,8 +22,7 @@
                     </div>
                     <div class="btns">
                         <a [routerLink]="['/catalog', game._id, 'edit']">EDIT</a>
-                        <a href="">ARCHIVE</a>
-                        <a href="">DELETE</a>
+                        <a [routerLink]="['/catalog', game._id, 'edit']">DELETE</a>
                     </div>
                 </div>
             </div>
