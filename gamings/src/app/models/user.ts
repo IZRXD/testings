@@ -1,5 +1,5 @@
 export type User = {
-    username: string;
-    email: string;
-    password: string;
+  username?: string | undefined | null;
+  email: string | undefined | null;
+  password: string | undefined | null;
 };

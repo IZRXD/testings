@@ -33,6 +33,7 @@ export class UserService {
     return this.http.post<User>(`${this.apiUrl}register`, user).pipe(
       catchError((error) => {
         console.error('Registration failed:', error);
+        // Handle the error appropriately (e.g., display an error message)
         return throwError(
           () => new Error(error.error?.message || 'Registration failed')
         );
@@ -48,7 +49,6 @@ export class UserService {
       .post<AuthResponse>(`${this.apiUrl}login`, credentials)
       .pipe(
         tap((response) => {
-
           localStorage.setItem('accessToken', response.accessToken);
 
           localStorage.setItem('_ownerId', response._id);
