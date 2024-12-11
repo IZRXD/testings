@@ -24,7 +24,7 @@
                 {{ game.rating }} <i class="fa-solid fa-star"></i>
               </p>
             </div>
-            <div class="btns">
+            <div class="btns" *ngIf="isOwner">
               <button [routerLink]="['/catalog', game._id, 'edit']">EDIT</button>
               <button (click)="deleteGame()">DELETE</button>
             </div>

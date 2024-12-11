@@ -8,17 +8,19 @@ import { GameCreateComponent } from './game-create/game-create.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { authGuard } from './guards/auth.guard';
 import { GameEditComponent } from './game-edit/game-edit.component';
-import { GameResolver } from './game.resolver';
+import { AboutComponent } from './about/about.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
 
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [authGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [authGuard] },
+
   {
     path: 'create-game',
     component: GameCreateComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
   },
 
   {
@@ -32,6 +34,7 @@ export const routes: Routes = [
       { path: ':gameId/edit', component: GameEditComponent },
       { path: ':gameId/delete', component: GameDetailsComponent },
     ],
+    canActivate: [authGuard],
   },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },

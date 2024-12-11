@@ -85,7 +85,9 @@ export class UserService {
     }
     return of(null);
   }
-
+  getUserId(): string | null {
+    return localStorage.getItem('_ownerId');
+  }
   //Helper function to check if logged in synchronously
   isLoggedIn(): boolean {
     return !!localStorage.getItem('accessToken');
