@@ -28,13 +28,15 @@ export class ApiService {
   }
 
   createGame(
+     _ownerId: string | undefined,
     title: string | undefined,
     imageUrl: string | undefined,
     creators: string | undefined,
     rating: string | undefined,
     downloads: string | undefined,
     description: string | undefined
-  ) {
+  ) 
+  {
     const payload = {
       title,
       imageUrl,
@@ -42,11 +44,12 @@ export class ApiService {
       rating,
       creators,
       description,
+      _ownerId
     };
     return this.http.post<Game>(`${this.apiUrl}/games`, payload);
   }
   editGame(id: string, updatedGame: Game) {
-    return this.http.post<Game>(`${this.apiUrl}/games/${id}`, updatedGame);
+    return this.http.put<Game>(`${this.apiUrl}/games/${id}`, updatedGame);
   }
 
   deleteGame(id: string) {

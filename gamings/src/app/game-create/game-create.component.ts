@@ -29,7 +29,7 @@ export class GameCreateComponent {
       downloads: formData.get('downloads')?.toString(),
       description: formData.get('description')?.toString(),
     };
-    this.apiService.createGame(gameData.title, gameData.imageUrl, gameData.creators, gameData.rating, gameData.downloads, gameData.description).subscribe({
+    this.apiService.createGame(localStorage.getItem('_ownerId')?.toString(), gameData.title, gameData.imageUrl, gameData.creators, gameData.rating, gameData.downloads, gameData.description).subscribe({
       next: (data) => {
          this.router.navigate(['/catalog']);
       },

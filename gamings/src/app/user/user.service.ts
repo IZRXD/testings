@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
@@ -13,12 +12,11 @@ import {
 } from 'rxjs';
 import { User } from '../models/user';
 
-
 // Define your User interface (match your backend's data structure)
-
 
 interface AuthResponse {
   accessToken: string;
+  _id: string;
   user: User;
 }
 
@@ -32,7 +30,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   register(user: User): Observable<User> {
-    //Use User type instead of any
     return this.http.post<User>(`${this.apiUrl}register`, user).pipe(
       catchError((error) => {
         console.error('Registration failed:', error);
@@ -51,7 +48,10 @@ export class UserService {
       .post<AuthResponse>(`${this.apiUrl}login`, credentials)
       .pipe(
         tap((response) => {
+
           localStorage.setItem('accessToken', response.accessToken);
+
+          localStorage.setItem('_ownerId', response._id);
           this.userSubject.next(response.user);
         }),
         catchError((error) => {
@@ -66,6 +66,7 @@ export class UserService {
 
   logout(): void {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('_ownerId');
     this.userSubject.next(null);
   }
 
