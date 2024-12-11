@@ -46,8 +46,14 @@ export class GameEditComponent implements OnInit {
   editGame(event: Event) {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
+    if (this.game._ownerId !== this.userService.getUserId()) {
+      console.log("not allowed");
+      
+      return;
+    }
     const gameData: Game = {
-      _ownerId: this.userService.getCurrentUser().toString(),
+      _id: this.game._id as string,
+      _ownerId: this.userService.getUserId() as string,
       title: formData.get('title')?.toString(),
       imageUrl: formData.get('imageUrl')?.toString(),
       creators: formData.get('creators')?.toString(),
@@ -55,10 +61,12 @@ export class GameEditComponent implements OnInit {
       downloads: formData.get('downloads')?.toString(),
       description: formData.get('description')?.toString(),
     };
-    console.log(gameData);
+    
 
     this.apiService.editGame(this.game._id as string, gameData).subscribe({
       next: () => {
+        console.log(gameData);
+        
         this.location.back();
       },
       error: (err) => {
